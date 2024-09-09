@@ -10,7 +10,7 @@ const saleNumbers =[5, 35, 40];
 console.log("Average Sales Data: $" + calculateAverageSales(saleNumbers)); //Output: Average Sales Data: $26.666666666666668 
 
 // Task 2: Create a Function to Determine Performance Rating
-//const avgSales = calculateAverageSales(salesData);
+
 function determinePerformanceRating(avgSales) {
     let performanceRatingOut;
     if (avgSales > 10000) {
@@ -24,4 +24,5 @@ function determinePerformanceRating(avgSales) {
     } else { // Error handling for negative values
         performanceRatingOut = "Invalid data"; // Output: If average sales are negative then the data is invalid
     return performanceRatingOut;
+    }
 }
