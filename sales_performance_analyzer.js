@@ -23,8 +23,8 @@ function determinePerformanceRating(avgSales) {
         performanceRatingOut = "Needs Improvement"; // Output: If average sales are > or = $0 then the rating needs improvement
     } else { // Error handling for negative values
         performanceRatingOut = "Invalid data"; // Output: If average sales are negative then the data is invalid
-    return performanceRatingOut;
     }
+    return performanceRatingOut;
 }
 
 //Task 3: Create a Function to Identify Top and Bottom Performers
@@ -51,3 +51,29 @@ let salesPeople = [
     {name: "Dave", totalSales: 15000},
     {name: "Greg", totalSales: 13000}
 ]; //This is an array of different objects representing sales people and their total sales
+
+// Task 4: Combine Functions to Generate a Performance Report
+
+const salesData = [
+
+    {name: "Alice", sales: [12000, 15000, 13000] },
+    {name: "Bob", sales: [7000, 6000, 7500] },
+    {name: 'Charlie', sales: [3000, 4000, 3500] },
+    {name: 'Diana', sales: [9000, 8500, 9200] },
+  ];
+
+function printData(salesPerson){
+ console.log("Name: " + salesPerson.name + " | Average Sales: $ " + salesPerson.avgSales.toFixed(2) + " | Rating: " + salesPerson.rating); // Output: Name: (Sales Person Name) | Average Sales: $ (Averages Sales) | Rating: (Rating of Sales Person Based off Total Sales)
+}
+
+function generatePerformanceReport(salesData) {
+salesData.forEach((curr) => curr.avgSales = calculateAverageSales(curr.sales)); // Output: This line loops through each of the data running previous functions to calculate the average sales
+salesData.forEach((curr) => curr.rating = determinePerformanceRating(curr.avgSales)); // Output: Ths line loops through each of the data running previous functions to determine the performance rating based of the average sales of the sales person
+salesData.forEach((curr) => curr.totalSales = curr.sales.reduce((sum, num) => sum + num, 0)); // Output: This line loops through each of the data running functions to adding all the sales per sales person and assigning them to each sales person's total sales
+let performers = findTopAndBottomPerformers( salesData );// Output: This line find the top and bottom performers
+
+salesData.forEach((curr) => printData(curr));
+console.log("Top Performer: " + performers.topPerformer.name);// Output: Top Performer: Alice
+console.log("Bottom Performer: " + performers.bottomPerformer.name); //Output: Bottom Performer: Charlie
+}
+generatePerformanceReport(salesData);
